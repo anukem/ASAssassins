@@ -6,7 +6,7 @@
 <body style=" background-image: url(logo-grey.png); ">
 <h1 style="text-align: center; ">Welcome to ASAssassins</h1>
 <h3>Are you ready?</h3>
-<%= link_to "New Player", :action => "new" %>
+<%= link_to "New Player", :controller => "users", :action => "new" %>
 
 <h4>See the Current Status of the Game <%= link_to "here", :action => "login" %></h4>
 </body>
