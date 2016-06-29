@@ -12891,3 +12891,527 @@ Processing by WelcomeController#index as HTML
   [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
 Completed 200 OK in 49ms (Views: 48.3ms | ActiveRecord: 0.3ms)
   [1m[36mUser Load (7.8ms)[0m  [1mSELECT "users".* FROM "users"[0m
+
+
+Started GET "/" for ::1 at 2016-06-29 15:22:01 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (2.8ms)
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+Completed 200 OK in 716ms (Views: 691.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for ::1 at 2016-06-29 15:22:02 -0500
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+Completed 200 OK in 124ms (Views: 123.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/login" for ::1 at 2016-06-29 15:22:05 -0500
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (21.1ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+Completed 200 OK in 73ms (Views: 72.0ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/login" for ::1 at 2016-06-29 15:22:10 -0500
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"6zBv7s7AynCg+89aHmcxdd2rGLjQQitUZHaUcj2rY8VbJQSK7k10JDF+3kseCPOO6r2TKZgeVmnnDnt3Hx30kQ==", "session"=>{"email"=>"jea2161@columbia.edu", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1[0m  [["email", "jea2161@columbia.edu"]]
+  Rendered sessions/new.html.erb within layouts/application (1.9ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+Completed 200 OK in 52ms (Views: 44.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/login" for ::1 at 2016-06-29 15:22:18 -0500
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.4ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+Completed 200 OK in 144ms (Views: 141.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/signup" for ::1 at 2016-06-29 15:22:19 -0500
+Processing by UsersController#new as HTML
+  Rendered shared/_error_messages.html.erb (4.4ms)
+  Rendered users/new.html.erb within layouts/application (14.9ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+Completed 200 OK in 94ms (Views: 83.1ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/users" for ::1 at 2016-06-29 15:22:36 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JEtCctyYCl0Tl0boT4C6SCicTxpu3fPZ6K6ocPNTOESUXikW/BW0CYISV/lP73izH4rEiyaBjuRr1kd10eWvEA==", "user"=>{"name"=>"John Anukem3", "email"=>"jea2161@columbia.edu", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('jea2161@columbia.edu') LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."kill_code") = LOWER('48') LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "kill_code", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "John Anukem3"], ["email", "jea2161@columbia.edu"], ["password_digest", "$2a$10$A2acsRGDz8letR4t.qkVXeYDFCVVi9MlwdoYBFNqJ2oAEKDxXhve2"], ["kill_code", "48"], ["created_at", "2016-06-29 20:22:36.488316"], ["updated_at", "2016-06-29 20:22:36.488316"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT 1[0m  [["name", "John Anukemd"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT 1  [["name", "Augustina Toro"]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "users" SET "target" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["target", "jsa asd"], ["updated_at", "2016-06-29 20:22:36.495454"], ["id", 15]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT 1  [["name", "jsa asd"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "users" SET "target" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["target", "Joke Garry"], ["updated_at", "2016-06-29 20:22:36.499897"], ["id", 13]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT 1  [["name", "Joke Garry"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "users" SET "target" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["target", "Julia Mercedes"], ["updated_at", "2016-06-29 20:22:36.504552"], ["id", 12]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT 1  [["name", "Julia Mercedes"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "users" SET "target" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["target", "John Anukem3"], ["updated_at", "2016-06-29 20:22:36.508052"], ["id", 11]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT 1  [["name", "John Anukem3"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "users" SET "target" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["target", "Jennifer Anukem"], ["updated_at", "2016-06-29 20:22:36.513026"], ["id", 17]]
+  [1m[36m (3.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT 1  [["name", "Jennifer Anukem"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "users" SET "target" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["target", "John Anukemd"], ["updated_at", "2016-06-29 20:22:36.520235"], ["id", 16]]
+  [1m[36m (3.3ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/17
+Completed 302 Found in 1388ms (ActiveRecord: 16.8ms)
+
+
+Started GET "/users/17" for ::1 at 2016-06-29 15:22:37 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"17"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 17]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 17]]
+  Rendered shared/_error_messages.html.erb (0.5ms)
+  Rendered users/show.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 58ms (Views: 55.7ms | ActiveRecord: 0.3ms)
+  [1m[36mUser Load (2.0ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT 1  [["name", "Jennifer Anukem"]]
+
+
+Started POST "/users/17" for ::1 at 2016-06-29 15:24:01 -0500
+Processing by UsersController#delete as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RZtL+lXYY9XBMARwYWBFcXwD06WLK8K4GY2UBX1zFk71jiCedVXdgVC1FWFhD4eKSxVYNMN3v4Wa9XsAX8WBGg==", "users"=>{"kill_code"=>"123"}, "commit"=>"Kill Player", "id"=>"17"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 17]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1[0m  [["kill_code", "123"]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1  [["kill_code", "123"]]
+  [1m[36mSQL (1.3ms)[0m  [1mDELETE FROM "users" WHERE "users"."id" = 16[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "users" SET "target" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["target", "John Anukemd"], ["updated_at", "2016-06-29 20:24:01.979690"], ["id", 17]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "users" SET "num_of_kills" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["num_of_kills", 1], ["updated_at", "2016-06-29 20:24:01.983724"], ["id", 17]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/17
+Completed 302 Found in 1353ms (ActiveRecord: 5.1ms)
+
+
+Started GET "/users/17" for ::1 at 2016-06-29 15:24:03 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"17"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 17]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 17]]
+  Rendered shared/_error_messages.html.erb (0.2ms)
+  Rendered users/show.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 86ms (Views: 84.4ms | ActiveRecord: 0.3ms)
+  [1m[36mUser Load (3.5ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users"
+
+
+Started POST "/users/17" for ::1 at 2016-06-29 15:30:21 -0500
+Processing by UsersController#delete as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"sn+bTL6C/a3ofzhvHmUkwFE6Rd8gl7NXWC7InbDbn7MCavAong9D+Xn6KX4eCuY7ZizOTmjLzmrbVieYkm0I5w==", "users"=>{"kill_code"=>"78"}, "commit"=>"Kill Player", "id"=>"17"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 17]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1[0m  [["kill_code", "78"]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1  [["kill_code", "78"]]
+  [1m[36mSQL (1.8ms)[0m  [1mDELETE FROM "users" WHERE "users"."id" = 14[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "users" SET "target" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["target", "Augustina Toro"], ["updated_at", "2016-06-29 20:30:21.192803"], ["id", 17]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "users" SET "num_of_kills" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["num_of_kills", 2], ["updated_at", "2016-06-29 20:30:21.199093"], ["id", 17]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 6.5ms)
+
+TypeError (no implicit conversion of User into String):
+  app/controllers/users_controller.rb:66:in `+'
+  app/controllers/users_controller.rb:66:in `delete'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.1ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (35.8ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (25.3ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (56.0ms)
+
+
+Started GET "/users/17" for ::1 at 2016-06-29 15:31:01 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"17"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 17]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 17]]
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  Rendered users/show.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 91ms (Views: 79.5ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/users/17" for ::1 at 2016-06-29 15:31:04 -0500
+Processing by UsersController#delete as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Iqq1TZEt0gE5DW56RNhQknrC6GRUObtm3KDcVEMcMFCSv94psaBsVaiIf2tEt5JpTdRj9Rxlxltf2DNRYaqnBA==", "users"=>{"kill_code"=>"78"}, "commit"=>"Kill Player", "id"=>"17"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 17]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1[0m  [["kill_code", "78"]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1  [["kill_code", "78"]]
+Redirected to http://localhost:3000/users/17
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/users/17" for ::1 at 2016-06-29 15:31:04 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"17"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 17]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 17]]
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/show.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 39ms (Views: 38.1ms | ActiveRecord: 0.2ms)
+  [1m[36mUser Load (3.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+
+
+Started POST "/users/17" for ::1 at 2016-06-29 15:31:39 -0500
+Processing by UsersController#delete as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Q1gsMKR8bDz+2G+RrK8Ho8SsTMI8A4jnZ+YIRPuOxZPzTUdUhPHSaG9dfoCswMVY87rHU3Rf9drknudB2ThSxw==", "users"=>{"kill_code"=>"423"}, "commit"=>"Kill Player", "id"=>"17"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 17]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1  [["kill_code", "423"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1[0m  [["kill_code", "423"]]
+  [1m[35mSQL (2.2ms)[0m  DELETE FROM "users" WHERE "users"."id" = 15
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "users" SET "target" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["target", "jsa asd"], ["updated_at", "2016-06-29 20:31:39.555672"], ["id", 17]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "users" SET "num_of_kills" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["num_of_kills", 3], ["updated_at", "2016-06-29 20:31:39.559712"], ["id", 17]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/17
+Completed 302 Found in 965ms (ActiveRecord: 5.7ms)
+
+
+Started GET "/users/17" for ::1 at 2016-06-29 15:31:40 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"17"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 17]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 17]]
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  Rendered users/show.html.erb within layouts/application (10.6ms)
+Completed 200 OK in 65ms (Views: 63.5ms | ActiveRecord: 0.2ms)
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+
+
+Started POST "/users/17" for ::1 at 2016-06-29 15:32:48 -0500
+Processing by UsersController#delete as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VHnc7JESCABWeYnvwtzhgfCFpMUE8Pjys8uvcBVDGqHkbLeIsZ+2VMf8mP7CsyN6x5MvVEyshc8ws0B1N/WN9Q==", "users"=>{"kill_code"=>"802"}, "commit"=>"Kill Player", "id"=>"17"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 17]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1  [["kill_code", "802"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1[0m  [["kill_code", "802"]]
+  [1m[35mSQL (1.3ms)[0m  DELETE FROM "users" WHERE "users"."id" = 13
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "users" SET "target" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["target", "Joke Garry"], ["updated_at", "2016-06-29 20:32:48.829388"], ["id", 17]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "users" SET "num_of_kills" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["num_of_kills", 4], ["updated_at", "2016-06-29 20:32:48.832634"], ["id", 17]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/17
+Completed 302 Found in 1067ms (ActiveRecord: 4.8ms)
+
+
+Started GET "/users/17" for ::1 at 2016-06-29 15:32:49 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"17"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 17]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 17]]
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  Rendered users/show.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 81ms (Views: 77.7ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/users/17" for ::1 at 2016-06-29 15:32:50 -0500
+Processing by UsersController#delete as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"7RintQkf5xuMtFIzrLgzifE+jaAlKHVWvBxy/q4oe9JdDczRKZJZTx0xQyKs1/FyxigGMW10CGs/ZJ37jJ7shg==", "users"=>{"kill_code"=>""}, "commit"=>"Kill Player", "id"=>"17"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 17]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1  [["kill_code", ""]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1[0m  [["kill_code", ""]]
+Redirected to http://localhost:3000/users/17
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users/17" for ::1 at 2016-06-29 15:32:50 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"17"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 17]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 17]]
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/show.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 147ms (Views: 145.7ms | ActiveRecord: 0.2ms)
+  [1m[36mUser Load (3.6ms)[0m  [1mSELECT "users".* FROM "users"[0m
+
+
+Started POST "/users/17" for ::1 at 2016-06-29 15:34:48 -0500
+Processing by UsersController#delete as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"HogaEh3nR5aQNGd9dzmeVit0Qg/65B5ecy7J1VpwHrqunXF2PWr5wgGxdmx3VlytHGLJnrK4Y2PwVibQeMaJ7g==", "users"=>{"kill_code"=>"783"}, "commit"=>"Kill Player", "id"=>"17"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 17]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1[0m  [["kill_code", "783"]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1  [["kill_code", "783"]]
+  [1m[36mSQL (2.3ms)[0m  [1mDELETE FROM "users" WHERE "users"."id" = 12[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "users" SET "target" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["target", "Julia Mercedes"], ["updated_at", "2016-06-29 20:34:49.041193"], ["id", 17]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "users" SET "num_of_kills" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["num_of_kills", 5], ["updated_at", "2016-06-29 20:34:49.044839"], ["id", 17]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/17
+Completed 302 Found in 769ms (ActiveRecord: 5.6ms)
+
+
+Started GET "/users/17" for ::1 at 2016-06-29 15:34:49 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"17"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 17]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 17]]
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  Rendered users/show.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 84ms (Views: 82.4ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/users/17" for ::1 at 2016-06-29 15:45:14 -0500
+Processing by UsersController#delete as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9V2drSBG6SL79Fjs7v6qe7A28kGFbPelRVYtCsA3YwxFSPbJAMtXdmpxSf3ukWiAhyB50M0wipjGLsIP4oH0WA==", "users"=>{"kill_code"=>"783"}, "commit"=>"Kill Player", "id"=>"17"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 17]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1[0m  [["kill_code", "783"]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1  [["kill_code", "783"]]
+Redirected to http://localhost:3000/users/17
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/users/17" for ::1 at 2016-06-29 15:45:14 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"17"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 17]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 17]]
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  Rendered users/show.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 68ms (Views: 66.9ms | ActiveRecord: 0.2ms)
+  [1m[35mUser Load (5.5ms)[0m  SELECT "users".* FROM "users"
+
+
+Started POST "/users/17" for ::1 at 2016-06-29 15:45:40 -0500
+Processing by UsersController#delete as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qv6WachQN03paXiOCJzySAfK83HXESzzdkA4bYHsoi8a6/0N6N2JGXjsaZ8I8zCzMNx44J9NUc71ONdoo1o1ew==", "users"=>{"kill_code"=>"32"}, "commit"=>"Kill Player", "id"=>"17"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 17]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1  [["kill_code", "32"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1[0m  [["kill_code", "32"]]
+  [1m[35mSQL (1.5ms)[0m  DELETE FROM "users" WHERE "users"."id" = 11
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "users" SET "target" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["target", "John Anukem3"], ["updated_at", "2016-06-29 20:45:40.454237"], ["id", 17]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "users" SET "num_of_kills" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["num_of_kills", 6], ["updated_at", "2016-06-29 20:45:40.457755"], ["id", 17]]
+  [1m[35m (0.9ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/17
+Completed 302 Found in 1428ms (ActiveRecord: 4.3ms)
+
+
+Started GET "/users/17" for ::1 at 2016-06-29 15:45:41 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"17"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 17]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 17]]
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  Rendered users/show.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 134ms (Views: 132.3ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/logout" for ::1 at 2016-06-29 15:46:03 -0500
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"ETpy06uXaB2GBqev8OSr6dx7KAMOgXaVUEoXvOaOHRahLxm3ixrWSReDtr7wi2kS622jkkbdC6jTMvi5xDiKQg=="}
+Redirected to http://localhost:3000/
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-06-29 15:46:03 -0500
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (1.0ms)
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+Completed 200 OK in 85ms (Views: 83.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/signup" for ::1 at 2016-06-29 15:46:04 -0500
+Processing by UsersController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  Rendered users/new.html.erb within layouts/application (4.4ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+Completed 200 OK in 51ms (Views: 44.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/users" for ::1 at 2016-06-29 15:46:13 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pOXj5fTXb75WzHcjrgfmTO1i76E7Nvmj1B3WFdrMLH8U8IiB1FrR6sdJZjKuaCS32nRkMHNqhJ5XZTkQ+Hq7Kw==", "user"=>{"name"=>"John Anukem", "email"=>"jea2161@columbia.edu", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('jea2161@columbia.edu') LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."kill_code") = LOWER('728') LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('jea2161@columbia.edu') LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."kill_code") = LOWER('728') LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1[0m  [["kill_code", "728"]]
+  Rendered shared/_error_messages.html.erb (0.6ms)
+  Rendered users/new.html.erb within layouts/application (3.6ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+Completed 200 OK in 227ms (Views: 127.7ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/users" for ::1 at 2016-06-29 15:46:22 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"/MTU8z1FfgDwPEFdIgSTeo/Z3dy2Ey4TaGJ7BLyH7/VM0b+XHcjAVGG5UEwia1GBuM9WTf5PUy7rGpQBnjF4oQ==", "user"=>{"name"=>"John Anukem", "email"=>"beast@beast.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('beast@beast.com') LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."kill_code") = LOWER('963') LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "kill_code", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "John Anukem"], ["email", "beast@beast.com"], ["password_digest", "$2a$10$I7wNuedwbMdmpiounXXfLe9Pc/MrLcRF3zUBL3F5ryXHsQVL5fUXO"], ["kill_code", "963"], ["created_at", "2016-06-29 20:46:22.972904"], ["updated_at", "2016-06-29 20:46:22.972904"]]
+  [1m[36m (8.2ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT 1[0m  [["name", "John Anukem3"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE "users" SET "target" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["target", "John Anukem"], ["updated_at", "2016-06-29 20:46:22.986976"], ["id", 17]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT 1[0m  [["name", "John Anukem"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "users" SET "target" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["target", "John Anukem3"], ["updated_at", "2016-06-29 20:46:22.992293"], ["id", 18]]
+  [1m[35m (1.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/18
+Completed 302 Found in 628ms (ActiveRecord: 13.0ms)
+
+
+Started GET "/users/18" for ::1 at 2016-06-29 15:46:23 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"18"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 18]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 18]]
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  Rendered users/show.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 56ms (Views: 53.3ms | ActiveRecord: 0.4ms)
+  [1m[36mUser Load (2.8ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35mUser Load (3.3ms)[0m  SELECT "users".* FROM "users"
+
+
+Started POST "/users/18" for ::1 at 2016-06-29 15:46:53 -0500
+Processing by UsersController#delete as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"f0s96ckaxSek+XJdavaNcsUhvtuvEWAylhFtr9p66TTPXlaN6Zd7czV8Y0xqmU+J8jc1SudNHQ8VaYKq+Mx+YA==", "users"=>{"kill_code"=>"48"}, "commit"=>"Kill Player", "id"=>"18"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 18]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1  [["kill_code", "48"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1[0m  [["kill_code", "48"]]
+  [1m[35mSQL (0.9ms)[0m  DELETE FROM "users" WHERE "users"."id" = 17
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "users" SET "target" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["target", "John Anukem"], ["updated_at", "2016-06-29 20:46:53.446181"], ["id", 18]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "users" SET "num_of_kills" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["num_of_kills", 1], ["updated_at", "2016-06-29 20:46:53.448944"], ["id", 18]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/18
+Completed 302 Found in 920ms (ActiveRecord: 3.3ms)
+
+
+Started GET "/users/18" for ::1 at 2016-06-29 15:46:54 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"18"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 18]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 18]]
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  Rendered users/show.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 46ms (Views: 44.2ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/logout" for ::1 at 2016-06-29 15:47:38 -0500
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"wMWWGH4TVrweejnfOUU3EiR5wEFPu8xP1vsbJ8fWPftw0P18Xp7o6I//KM45KvXpE29L0AfnsXJVg/Qi5WCqrw=="}
+Redirected to http://localhost:3000/
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-06-29 15:47:38 -0500
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.8ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+Completed 200 OK in 142ms (Views: 140.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/signup" for ::1 at 2016-06-29 15:47:40 -0500
+Processing by UsersController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  Rendered users/new.html.erb within layouts/application (5.1ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+Completed 200 OK in 58ms (Views: 49.9ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/users" for ::1 at 2016-06-29 15:47:55 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+h7mqXMZtl0zn8QvKDTqjTZB8ASn5MNCyj3JWGK7ZXJKC43NU5QICaIa1T4oWyh2AVd7le+4vn9JRSZdQA3yJg==", "user"=>{"name"=>"Sam Olayiwola", "email"=>"sam@yahoo.comw", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('sam@yahoo.comw') LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."kill_code") = LOWER('105') LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "kill_code", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Sam Olayiwola"], ["email", "sam@yahoo.comw"], ["password_digest", "$2a$10$ULJgEmhBpTnvOta.L08TDOCDh8k9wr6SePzZ2vBPKeJCnRWBYMQvy"], ["kill_code", "105"], ["created_at", "2016-06-29 20:47:55.911700"], ["updated_at", "2016-06-29 20:47:55.911700"]]
+  [1m[36m (9.3ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT 1[0m  [["name", "John Anukem"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "users" SET "target" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["target", "Sam Olayiwola"], ["updated_at", "2016-06-29 20:47:55.926037"], ["id", 18]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT 1[0m  [["name", "Sam Olayiwola"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "users" SET "target" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["target", "John Anukem"], ["updated_at", "2016-06-29 20:47:55.929731"], ["id", 19]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/19
+Completed 302 Found in 800ms (ActiveRecord: 13.0ms)
+
+
+Started GET "/users/19" for ::1 at 2016-06-29 15:47:56 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"19"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 19]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 19]]
+  Rendered shared/_error_messages.html.erb (0.2ms)
+  Rendered users/show.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 55ms (Views: 52.4ms | ActiveRecord: 0.4ms)
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+
+
+Started POST "/users/19" for ::1 at 2016-06-29 15:48:09 -0500
+Processing by UsersController#delete as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"J5gq6am8VQWJc5FXNVA+9Vm2HPP3fJmgySuDQLJf+z+XjUGNiTHrURj2gEY1P/wObqCXYr8g5J1KU2xFkOlsaw==", "users"=>{"kill_code"=>"963"}, "commit"=>"Kill Player", "id"=>"19"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 19]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1  [["kill_code", "963"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."kill_code" = ? LIMIT 1[0m  [["kill_code", "963"]]
+  [1m[35mSQL (1.3ms)[0m  DELETE FROM "users" WHERE "users"."id" = 18
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "users" SET "target" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["target", "Sam Olayiwola"], ["updated_at", "2016-06-29 20:48:09.357078"], ["id", 19]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "users" SET "num_of_kills" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["num_of_kills", 1], ["updated_at", "2016-06-29 20:48:09.361100"], ["id", 19]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/19
+Completed 302 Found in 582ms (ActiveRecord: 4.7ms)
+
+
+Started GET "/users/19" for ::1 at 2016-06-29 15:48:09 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"19"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 19]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 19]]
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  Rendered users/show.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 62ms (Views: 60.2ms | ActiveRecord: 0.3ms)

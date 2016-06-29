@@ -38,8 +38,8 @@ class User < ActiveRecord::Base
 			end
 		end
 		# put your own credentials here 
-		account_sid = ""  
-		auth_token = ""
+		account_sid =  
+		auth_token = 
 		 
 		# set up a client to talk to the Twilio REST API 
 		@client = Twilio::REST::Client.new account_sid, auth_token 
@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
 		@client.account.messages.create({
 			:from => '+16822171741', 
 			:to => '8178915039', 
-			:body => 'You just signed up on ASAssassins.com',  
+			:body => 'You just signed up on ASAssassins',  
 		})
 		return linkedList
 		
@@ -61,11 +61,14 @@ class User < ActiveRecord::Base
 			User.delete(killedUser)
 			self.update_attribute(:target, target)
 			self.increaseKillCount
+			return target
 		else
+			returnValue = killedUser.name
 			userAffected = User.find_by(target: killedUser.name)
 			User.delete(killedUser)
 			userAffected.update_attribute(:target, target)
 			userAffected.increaseKillCount
+			return target
 		end
 	end
 
