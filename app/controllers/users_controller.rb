@@ -54,8 +54,8 @@ class UsersController < ApplicationController
 			else
 				targetName = currentUser.select_new_target(currentUser, @killedUser)
 				# put your own credentials here 
-				account_sid = 'ACd90d6846a29ce128e98bee5f07e1de0d' 
-				auth_token = '0fe6761da942613b979401cadc61d670' 
+				account_sid = 
+				auth_token = 
 				 
 				# set up a client to talk to the Twilio REST API 
 				@client = Twilio::REST::Client.new account_sid, auth_token 
