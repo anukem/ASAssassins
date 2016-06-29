@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 		if @user.save
 			log_in @user
 			flash[:success] = "Welcome to the time of your life!"
+			@user.begin_game
 			redirect_to @user
 		
 		elsif !@user.save && User.find_by(kill_code: @user.kill_code)
@@ -51,9 +52,9 @@ class UsersController < ApplicationController
 				flash[:danger] = "Wrong Code"
 				redirect_to currentUser
 			else
-				User.delete(@killedUser)
-				currentUser.increaseKillCount
-				redirect_to root_url
+				currentUser.select_new_target(currentUser, @killedUser)
+				redirect_to currentUser
+
 			end
 		end
 		
