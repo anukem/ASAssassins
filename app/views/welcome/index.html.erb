@@ -2,12 +2,35 @@
 <html>
 <head>
 	<title>Welcome</title>
+
 </head>
 <body style=" background-image: url(logo-grey.png); ">
 <h1 style="text-align: center; ">Welcome to ASAssassins</h1>
 <h3>Are you ready?</h3>
 <%= link_to "New Player", :controller => "users", :action => "new" %>
+<div id = "getting-started" style="display: none"></div>
+<h4>See the Current Status of the Game <%= link_to "here", :controller => "users", :action => "index" %></h4>
 
-<h4>See the Current Status of the Game <%= link_to "here", :action => "login" %></h4>
+<!-- Countdown plugin -->
+        
+
+        <script>
+    $("#getting-started") 
+            // Year/Month/Day Hour:Minute:Second
+            .countdown("2016/07/21 20:18:00", function (event) {
+
+            	if(event.type != "stoped" && event.type != "finish") {
+            		$(this).css('display', 'block').html(
+                        event.strftime('%D Days %Hh %Mm <span class="second-timer" >%Ss</span>')
+                        );
+            	}
+            	else {
+            		$("#getting-started").fadeOut();
+            	}
+                
+                
+
+            });
+        </script>
 </body>
 </html>

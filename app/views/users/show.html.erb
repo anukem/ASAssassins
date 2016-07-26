@@ -2,7 +2,7 @@
   <div class="alert alert-<%= message_type %>"><%= message %></div>
 <% end %>
 <%if logged_in?%>
-	    <%= form_for(:users, controller: "ussers", action: "delete") do |f| %>
+	    <%= form_for(:users, controller: "users", action: "delete") do |f| %>
        <%= render 'shared/error_messages' %>
 
       <%= f.label :Kill_Code  %>

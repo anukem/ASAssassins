@@ -6,11 +6,13 @@ class User < ActiveRecord::Base
 	validates :email, presence: true, length: {maximum: 50},
 					  format: { with: VALID_EMAIL_REGEX },
 					  uniqueness: { case_sensitive: false }
-					
+				
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 6 }
 	validates :kill_code, presence: true, uniqueness: { case_sensitive: false}
-
+	validates :phone_number, presence: true, 
+				uniqueness: {case_sensitive: false }, 
+				length: {minimum: 10, maximum: 10}
 	def increaseKillCount
 		if self.num_of_kills == nil
 			self.update_attribute(:num_of_kills, 1) 
@@ -37,18 +39,6 @@ class User < ActiveRecord::Base
 				currentUser.update_attribute(:target, target)
 			end
 		end
-		# put your own credentials here 
-		account_sid =  
-		auth_token = 
-		 
-		# set up a client to talk to the Twilio REST API 
-		@client = Twilio::REST::Client.new account_sid, auth_token 
-		 
-		@client.account.messages.create({
-			:from => '+16822171741', 
-			:to => '8178915039', 
-			:body => 'You just signed up on ASAssassins',  
-		})
 		return linkedList
 		
 	end
@@ -57,18 +47,16 @@ class User < ActiveRecord::Base
 		target = killedUser.target
 		if currentUser.target == killedUser.name
 
-			
 			User.delete(killedUser)
-			self.update_attribute(:target, target)
-			self.increaseKillCount
+			currentUser.update_attribute(:target, target)
+			currentUser.increaseKillCount
 			return target
 		else
-			returnValue = killedUser.name
 			userAffected = User.find_by(target: killedUser.name)
 			User.delete(killedUser)
 			userAffected.update_attribute(:target, target)
-			userAffected.increaseKillCount
-			return target
+			currentUser.increaseKillCount
+			return currentUser.target
 		end
 	end
 

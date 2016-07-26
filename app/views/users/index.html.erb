@@ -1,0 +1,23 @@
+<h1 style="color: white;">CURRENT STANDINGS</h1>
+ 
+<table class="table", style="border: none;">
+  <tr style="border: none;">
+    <th style="border: none;">Player Name </th>
+    <th style="border: none;">Number of Kills</th>
+  </tr>
+ 
+  <% @users.each do |user| %>
+    <tr style="border: none;">
+      <td style="border: none;"><%= user.name %></td>
+      <td style="border: none;">
+      <%= if user.num_of_kills == nil
+      		user.num_of_kills = 0
+      	else
+      		user.num_of_kills
+      	end  %>
+
+      </td>
+    </tr>
+  <% end %>
+</table>
+

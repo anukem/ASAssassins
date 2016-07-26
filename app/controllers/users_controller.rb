@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+	
 	def show
 		seshID =  session[:user_id].to_s
 		id = params[:id].to_s
@@ -31,9 +32,14 @@ class UsersController < ApplicationController
 			log_in @user
 			flash[:success] = "Welcome to the time of your life!"
 			redirect_to @user
+			
 		else
 			render "new"
 		end
+	end
+
+	def index
+		@users = User.all 
 	end
 
 	def delete
@@ -42,6 +48,10 @@ class UsersController < ApplicationController
 		killCode = params[:users][:kill_code]
 		currentUser = User.find_by(id: id)
 		killedUser = User.find_by(kill_code: killCode)
+		account_sid = ENV["ACCOUNT_SID"]
+		auth_token = ENV["AUTH_TOKEN"]
+		from_number = ENV["FROM_NUMBER"]
+		@client = Twilio::REST::Client.new account_sid, auth_token 
 		if currentUser == killedUser	
 			@user = User.find_by(id: id)
 			flash[:danger] = "Sorry, you can't kill yourself"
@@ -52,19 +62,24 @@ class UsersController < ApplicationController
 				flash[:danger] = "Wrong Code"
 				redirect_to currentUser
 			else
-				targetName = currentUser.select_new_target(currentUser, @killedUser)
-				# put your own credentials here 
-				account_sid = 
-				auth_token = 
-				 
-				# set up a client to talk to the Twilio REST API 
-				@client = Twilio::REST::Client.new account_sid, auth_token 
-				 
-				@client.account.messages.create({
-					:from => '+16822171741', 
-					:to => '8178915039', 
-					:body => 'Your next target is ' + targetName ,  
-				})
+				oldTargetName = currentUser.target 
+				newTarget = currentUser.select_new_target(currentUser, @killedUser)
+				if killedUser.name == oldTargetName 
+    				@killedUser = killedUser
+    				@client.account.messages.create({
+					:from => from_number, 
+					:to => currentUser.phone_number, 
+					:body => 'Well done. You killed '+ killedUser.name + 
+							 '. Your next target is ' + newTarget + "." ,  
+					})
+    			else
+    				#Your kill has been recorded
+    				@client.account.messages.create({
+					:from => from_number, 
+					:to => "8178915039",#currentUser.phone_number 
+					:body => 'Well done. Your kill has been recorded.' 
+					})
+    			end
 				redirect_to currentUser
 
 			end
@@ -72,11 +87,52 @@ class UsersController < ApplicationController
 		
 	end
 
+	def textToKill
+    	
+    	from_number = params[:From]
+    	from_number = from_number[2,from_number.length - 1]
+    	potentialKillCode = params[:Body]
+
+    	killer = User.find_by(phone_number: from_number)
+    	killedUser = User.find_by(kill_code: potentialKillCode)
+    	if killer 
+    		if killedUser
+
+    			if killedUser.name == killer.target
+    				@killedUser = killedUser
+    				killer.select_new_target(killer, killedUser)
+    				render "killedTarget", :content_type => "text/xml"
+    			else
+    				if killedUser.name == killer.name 
+    					render "failure", :content_type => "text/xml"
+    				else
+    					@killedUser = killedUser
+    					killer.select_new_target(killer, killedUser)
+    					render "anarchyKill", :content_type => "text/xml"
+    				end
+    			end
+
+    		else
+    			render "failure", :content_type => "text/xml"
+    		end
+    		
+    	else
+    		render "failure", :content_type => "text/xml"
+    	end
+	end
+
 	private 
 
 	def user_params
-		params.require(:user).permit(:name, :email, :password, :password_confirmation)
+		params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone_number)
 	end
+
+	def boot_twilio
+    	account_sid = "ACd90d6846a29ce128e98bee5f07e1de0d"
+    	auth_token = "0fe6761da942613b979401cadc61d670"
+    	puts account_sid
+    	@client = Twilio::REST::Client.new account_sid, auth_token
+  	end
 
 	def generate_random_string
 

@@ -16,7 +16,12 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
 
+  post "/textToKill" => "users#textToKill"   
+
   post  "users/:id" => "users#delete"
+
+  post "/twiml" => "users#twiml"
+
 
   resources :users
   # Example of regular route:
