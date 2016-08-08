@@ -3,34 +3,80 @@
 <head>
 	<title>Welcome</title>
 
+
+<style>
+body {background-color: black;}
+video#intro{
+    min-width:100%;
+    min-height:100%;
+    width:100%;
+    height:100%;
+    position:relative;
+    z-index:1;
+}
+
+#video-overlay{
+    position:fixed;
+    color: rgb(255,255,255);
+    z-index:1;
+    top: 225px;
+    left: 380px;
+    overflow: hidden;
+}
+
+</style>
+
 </head>
-<body style=" background-image: url(logo-grey.png); ">
-<h1 style="text-align: center; ">Welcome to ASAssassins</h1>
-<h3>Are you ready?</h3>
-<%= link_to "New Player", :controller => "users", :action => "new" %>
-<div id = "getting-started" style="display: none"></div>
-<h4>See the Current Status of the Game <%= link_to "here", :controller => "users", :action => "index" %></h4>
 
-<!-- Countdown plugin -->
+<body>
+
+<div id="outer-container" align= "center">
+    <video id="intro" autoplay loop muted poster="lionfire.jpg">
         
+        <source src= "247897700.webm" type= "video/webm"/>
+        <source src= "247897700.mp4" type= "video/mp4"/>
+        
+    </video>
 
-        <script>
-    $("#getting-started") 
-            // Year/Month/Day Hour:Minute:Second
-            .countdown("2016/07/21 20:18:00", function (event) {
+        <div id="video-overlay">
+            <h1 style="text-align: center;">
+                <font size="200" face="modern">Welcome to ASAssassins</font>
+            </h1>
 
-            	if(event.type != "stoped" && event.type != "finish") {
-            		$(this).css('display', 'block').html(
-                        event.strftime('%D Days %Hh %Mm <span class="second-timer" >%Ss</span>')
-                        );
-            	}
-            	else {
-            		$("#getting-started").fadeOut();
-            	}
-                
-                
+            <h2>
+                <font face="modern">Are you ready?</font>
+            </h2>
 
-            });
-        </script>
-</body>
+            <%= link_to "New Player", :controller => "users", :action => "new" %>
+            <div id = "getting-started" style="display: none"></div>
+            <h4>See the Current Status of the Game <%= link_to "here", :controller => "users", :action => "index" %></h4>
+        </div>
+    
+    
+</div>
+
+
+
+    <!-- Countdown plugin -->
+            
+
+            <script>
+        $("#getting-started") 
+                // Year/Month/Day Hour:Minute:Second
+                .countdown("2016/09/06 20:18:00", function (event) {
+
+                	if(event.type != "stoped" && event.type != "finish") {
+                		$(this).css('display', 'block').html(
+                            event.strftime('%D Days %Hh %Mm <span class="second-timer" >%Ss</span>')
+                            );
+                	}
+                	else {
+                		$("#getting-started").fadeOut();
+                	}
+                    
+                    
+
+                });
+            </script>
+        </body>
 </html>

@@ -63,12 +63,13 @@ class UsersController < ApplicationController
 				redirect_to currentUser
 			else
 				oldTargetName = currentUser.target 
-				newTarget = currentUser.select_new_target(currentUser, @killedUser)
+				#newTarget = currentUser.select_new_target(currentUser, @killedUser)
+				newTarget = "Konyin"
 				if killedUser.name == oldTargetName 
     				@killedUser = killedUser
     				@client.account.messages.create({
 					:from => from_number, 
-					:to => currentUser.phone_number, 
+					:to => "3015379291", #currentUser.phone_number, 
 					:body => 'Well done. You killed '+ killedUser.name + 
 							 '. Your next target is ' + newTarget + "." ,  
 					})
