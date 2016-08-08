@@ -48,10 +48,8 @@ class UsersController < ApplicationController
 		killCode = params[:users][:kill_code]
 		currentUser = User.find_by(id: id)
 		killedUser = User.find_by(kill_code: killCode)
-		account_sid = ENV["ACCOUNT_SID"]
-		auth_token = ENV["AUTH_TOKEN"]
-		from_number = ENV["FROM_NUMBER"]
-		@client = Twilio::REST::Client.new account_sid, auth_token 
+		boot_twilio
+		from_number = ENV["from_number"]
 		if currentUser == killedUser	
 			@user = User.find_by(id: id)
 			flash[:danger] = "Sorry, you can't kill yourself"
@@ -72,12 +70,27 @@ class UsersController < ApplicationController
 					:body => 'Well done. You killed '+ killedUser.name + 
 							 '. Your next target is ' + newTarget + "." ,  
 					})
+
+					#For the killers next target 
+					@client.account.messages.create({
+					:from => from_number, 
+					:to => "8178915039", #newTarget.phone_number 
+					:body => 'Your assassin has been killed, be careful.' 
+					})
+					
     			else
-    				#Your kill has been recorded
+    				#For the killer
     				@client.account.messages.create({
 					:from => from_number, 
 					:to => "8178915039",#currentUser.phone_number 
 					:body => 'Well done. Your kill has been recorded.' 
+					})
+
+    				#For the killers next target 
+					@client.account.messages.create({
+					:from => from_number, 
+					:to => "8178915039", #newTarget.phone_number 
+					:body => 'Your assassin has been killed, be careful.' 
 					})
     			end
 				redirect_to currentUser
@@ -128,9 +141,8 @@ class UsersController < ApplicationController
 	end
 
 	def boot_twilio
-    	account_sid = "ACd90d6846a29ce128e98bee5f07e1de0d"
-    	auth_token = "0fe6761da942613b979401cadc61d670"
-    	puts account_sid
+    	account_sid = Figaro.env.ACCOUNT_SID
+    	auth_token = Figaro.env.AUTH_TOKEN
     	@client = Twilio::REST::Client.new account_sid, auth_token
   	end
 
