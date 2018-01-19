@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
 	
 	def show
 		seshID =  session[:user_id].to_s
@@ -143,7 +142,7 @@ class UsersController < ApplicationController
 	def boot_twilio
     	account_sid = Figaro.env.ACCOUNT_SID
     	auth_token = Figaro.env.AUTH_TOKEN
-    	@client = Twilio::REST::Client.new account_sid, auth_token
+    	@client = Twilio::REST::Client.new Rails.application.secrets.twilio_sid, Rails.application.secrets.twilio_token
   	end
 
 	def generate_random_string
