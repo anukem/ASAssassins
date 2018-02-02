@@ -1,4 +1,5 @@
 *.log
+/new_db/
 *.sql
 *.sqlite
 /application.yml
