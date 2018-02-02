@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 		currentUser = User.find_by(id: id)
 		killedUser = User.find_by(kill_code: killCode)
 		boot_twilio
-		from_number = ENV["from_number"]
+		from_number = Rails.application.secrets.twilio_number
 		if currentUser == killedUser	
 			@user = User.find_by(id: id)
 			flash[:danger] = "Sorry, you can't kill yourself"
@@ -65,7 +65,7 @@ class UsersController < ApplicationController
     				@killedUser = killedUser
     				@client.account.messages.create({
 					:from => from_number, 
-					:to => currentUser.phone_number, 
+					:to => "18178915039",#currentUser.phone_number, 
 					:body => 'Well done. You killed '+ killedUser.name + 
 							 '. Your next target is ' + newTarget + "." ,  
 					})
@@ -109,7 +109,6 @@ class UsersController < ApplicationController
     	killedUser = User.find_by(kill_code: potentialKillCode)
     	if killer 
     		if killedUser
-
     			if killedUser.name == killer.target
     				@killedUser = killedUser
     				killer.select_new_target(killer, killedUser)

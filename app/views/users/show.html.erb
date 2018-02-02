@@ -2,14 +2,20 @@
   <div class="alert alert-<%= message_type %>"><%= message %></div>
 <% end %>
 <%if logged_in?%>
-	    <%= form_for(:users, controller: "users", action: "delete") do |f| %>
-       <%= render 'shared/error_messages' %>
-
-      <%= f.label :Kill_Code  %>
-      <%= f.text_field :kill_code, class: "form-control" %>
-
-      <%= f.submit "Kill Player", class: "btn btn-primary" %>
-    <% end %>
+	  <%= form_for(:users, controller: "users", action: "delete") do |f| %>
+      	<%= render 'shared/error_messages' %>
+      	<%= f.label :Kill_Code  %>
+      	<%= f.text_field :kill_code, class: "form-control" %>
+      	<%= f.submit "Kill Player", class: "btn btn-primary" %>
+      	<div style="font-weight: bold;">
+      		Your Kill Code is: <%= @user.kill_code %> <br>	
+      		Your target is:  <%= @user.target %>	
+      	</div>
+      	<div>
+      		<a href="/users"> See Current Standings </a>
+      	</div>
+      
+      <% end %>
 <% else %>
 hey theres nothing to see here
 
