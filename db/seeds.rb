@@ -16,4 +16,3 @@ User.create(name: "Braxton Gunter", email: "beg2119@columbia.edu",
 User.create(name: "Fredrick Kofi Tam", email: "fkt2105@columbia.edu", 
 			password: "doggie", password_confirmation: "doggie", 
 			kill_code: "2", num_of_kills: 0, target: "John Anukem", phone_number: "4106557997")
-
