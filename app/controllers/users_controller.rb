@@ -47,8 +47,8 @@ class UsersController < ApplicationController
 		killCode = params[:users][:kill_code]
 		currentUser = User.find_by(id: id)
 		killedUser = User.find_by(kill_code: killCode)
-		boot_twilio
-		from_number = Rails.application.secrets.twilio_number
+		#boot_twilio
+		#from_number = Rails.application.secrets.twilio_number
 		if currentUser == killedUser	
 			@user = User.find_by(id: id)
 			flash[:danger] = "Sorry, you can't kill yourself"
@@ -63,37 +63,36 @@ class UsersController < ApplicationController
 				newTarget = currentUser.select_new_target(currentUser, @killedUser)
 				if killedUser.name == oldTargetName 
     				@killedUser = killedUser
-    				@client.account.messages.create({
-					:from => from_number, 
-					:to => "18178915039",#currentUser.phone_number, 
-					:body => 'Well done. You killed '+ killedUser.name + 
-							 '. Your next target is ' + newTarget + "." ,  
-					})
-
-					#For the killers next target 
-					@client.account.messages.create({
-					:from => from_number, 
-					:to => "8178915039", #newTarget.phone_number 
-					:body => 'Your assassin has been killed, be careful.' 
-					})
+    			#	@client.account.messages.create({
+			#		:from => from_number, 
+			#		:to => "18178915039",#currentUser.phone_number, 
+			#		:body => 'Well done. You killed '+ killedUser.name + 
+			#				 '. Your next target is ' + newTarget + "." ,  
+			#		})
+#
+#					#For the killers next target 
+#					@client.account.messages.create({
+#					:from => from_number, 
+#					:to => "8178915039", #newTarget.phone_number 
+#					:body => 'Your assassin has been killed, be careful.' 
+#					})
 					
-    			else
+    		#	else
     				#For the killer
-    				@client.account.messages.create({
-					:from => from_number, 
-					:to => "8178915039",#currentUser.phone_number 
-					:body => 'Well done. Your kill has been recorded.' 
-					})
+ #   				@client.account.messages.create({
+#					:from => from_number, 
+#					:to => "8178915039",#currentUser.phone_number 
+#					:body => 'Well done. Your kill has been recorded.' 
+#					})
 
     				#For the killers next target 
-					@client.account.messages.create({
-					:from => from_number, 
-					:to => "8178915039", #newTarget.phone_number 
-					:body => 'Your assassin has been killed, be careful.' 
-					})
+#					@client.account.messages.create({
+#					:from => from_number, 
+#					:to => "8178915039", #newTarget.phone_number 
+					#:body => 'Your assassin has been killed, be careful.' 
+					#})
     			end
 				redirect_to currentUser
-
 			end
 		end
 		
