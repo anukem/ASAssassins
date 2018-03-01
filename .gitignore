@@ -1,6 +1,6 @@
 *.log
 /new_db/
-/tmp
+/tmp/
 *.sql
 *.sqlite
 /application.yml

@@ -8,9 +8,8 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get "welcome/login"
-
+  get "welcome/password_reset" => "welcome#password_reset"
   get "welcome/new" => "welcome#new"
-
   # get "signup" => "users#new"
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
